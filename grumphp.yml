@@ -1,0 +1,21 @@
+grumphp:
+    ascii:
+        failed: resources/grumphp-grumpy.txt
+        succeeded: resources/grumphp-happy.txt
+    fixer:
+        enabled: true
+        fix_by_default: true
+    tasks:
+        phpstan:
+            configuration: 'phpstan.neon'
+            use_grumphp_paths: true
+        phpmd:
+            whitelist_patterns: []
+            exclude: []
+            report_format: text
+            ruleset: ['cleancode', 'codesize', 'naming', 'design', 'unusedcode']
+            triggered_by: ['php']
+        phpcs:
+            show_sniffs_error_path: true
+        phpunit:
+            config_file: phpunit.xml.dist
