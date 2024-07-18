@@ -79,8 +79,7 @@ class PdoSqlSnapshotStore implements SnapshotStoreInterface
     /**
      * Stores an aggregate snapshot
      *
-     * @phpstan-ignore Generic.Files.LineLength.TooLong
-     * @param  \Phauthentic\SnapshotStore\SnapshotInterface $snapshot Snapshot
+     * @param SnapshotInterface $snapshot Snapshot
      * @return void
      */
     public function store(SnapshotInterface $snapshot): void
@@ -115,7 +114,7 @@ class PdoSqlSnapshotStore implements SnapshotStoreInterface
      * Gets an aggregate snapshot if one exist
      *
      * @param  string $aggregateId Aggregate Id
-     * @return null|\Phauthentic\SnapshotStore\SnapshotInterface
+     * @return null|SnapshotInterface
      */
     public function get(string $aggregateId): ?SnapshotInterface
     {
@@ -144,7 +143,7 @@ class PdoSqlSnapshotStore implements SnapshotStoreInterface
      * Turns the data array from PDO into a snapshot DTO
      *
      * @param  array<string, mixed> $data Data
-     * @return \Phauthentic\SnapshotStore\SnapshotInterface
+     * @return SnapshotInterface
      */
     protected function toSnapshot(array $data): SnapshotInterface
     {
