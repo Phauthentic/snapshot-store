@@ -14,7 +14,7 @@ use Phauthentic\SnapshotStore\SnapshotInterface;
  */
 class NullSnapshotStore implements SnapshotStoreInterface
 {
-    public function store(SnapshotInterface $snapshot)
+    public function store(SnapshotInterface $snapshot): void
     {
     }
 

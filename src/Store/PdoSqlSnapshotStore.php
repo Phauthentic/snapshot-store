@@ -79,6 +79,7 @@ class PdoSqlSnapshotStore implements SnapshotStoreInterface
     /**
      * Stores an aggregate snapshot
      *
+     * @phpstan-ignore Generic.Files.LineLength.TooLong
      * @param  \Phauthentic\SnapshotStore\SnapshotInterface $snapshot Snapshot
      * @return void
      */

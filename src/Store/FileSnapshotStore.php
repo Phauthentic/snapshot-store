@@ -14,7 +14,7 @@ use Phauthentic\SnapshotStore\SnapshotInterface;
 /**
  * File System Store
  *
- * Saves your aggregate state snapshot in the file system.
+ * Saves your aggregate state snapshot in the file system. Can be used for testing and debugging.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
