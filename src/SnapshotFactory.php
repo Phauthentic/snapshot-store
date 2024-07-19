@@ -6,6 +6,7 @@ namespace Phauthentic\SnapshotStore;
 
 use DateTimeImmutable;
 use Phauthentic\SnapshotStore\Exception\AssertionException;
+use Phauthentic\SnapshotStore\Exception\SnapshotStoreException;
 
 /**
  * Snapshot Factory
@@ -38,7 +39,7 @@ class SnapshotFactory implements SnapshotFactoryInterface
 
     /**
      * @param array<string, mixed> $data
-     * @throws \Phauthentic\SnapshotStore\Exception\SnapshotStoreException
+     * @throws SnapshotStoreException
      */
     public function fromArray(array $data): SnapshotInterface
     {

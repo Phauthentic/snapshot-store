@@ -88,7 +88,7 @@ final class SnapshotTransformerTest extends TestCase
         ];
 
         $this->expectException(SnapshotStoreException::class);
-        $this->expectExceptionMessage('The array is missing the key created_at.');
+        $this->expectExceptionMessage('The array is missing the `created_at` key');
 
         $this->transformer->arrayToSnapshot($data);
     }

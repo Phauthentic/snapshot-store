@@ -12,6 +12,9 @@ use Phauthentic\SnapshotStore\Exception\AssertionException;
 use PHPUnit\Framework\TestCase;
 use stdClass;
 
+/**
+ *
+ */
 class SnapshotFactoryTest extends TestCase
 {
     protected SnapshotFactoryInterface $snapshotFactory;
@@ -58,5 +61,25 @@ class SnapshotFactoryTest extends TestCase
         $this->expectExceptionMessage('The array is missing the `aggregateCreatedAt` key');
 
         $this->snapshotFactory->fromArray($data);
+    }
+
+    public function testToArray(): void
+    {
+        $dateTime = new DateTimeImmutable('2022-01-01 12:00:00');
+        $aggregate = new stdClass();
+
+        $data = [
+            SnapshotInterface::AGGREGATE_TYPE => 'user',
+            SnapshotInterface::AGGREGATE_ID => '123',
+            SnapshotInterface::AGGREGATE_ROOT => $aggregate,
+            SnapshotInterface::AGGREGATE_VERSION => 1,
+            SnapshotInterface::AGGREGATE_CREATED_AT => $dateTime
+        ];
+
+        $snapshot = $this->snapshotFactory->fromArray($data);
+
+        $data[SnapshotInterface::AGGREGATE_CREATED_AT] = '2022-01-01 12:00:00';
+
+        $this->assertSame($data, $this->snapshotFactory->toArray($snapshot));
     }
 }

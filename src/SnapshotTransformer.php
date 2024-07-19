@@ -62,7 +62,7 @@ class SnapshotTransformer implements SnapshotTransformerInterface
                 continue;
             }
 
-            throw new AssertionException(sprintf('The array is missing the key %s.', $field));
+            throw AssertionException::missingArrayKey(sprintf($field));
         }
     }
 

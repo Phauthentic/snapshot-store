@@ -4,4 +4,5 @@
 /tmp/
 /tools/
 .idea/
+.env
 infection.log
