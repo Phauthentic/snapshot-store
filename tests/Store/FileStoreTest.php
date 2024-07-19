@@ -15,6 +15,9 @@ class FileStoreTest extends AbstractStoreTestCase
 {
     protected function createSnapshotStore(): SnapshotStoreInterface
     {
-        return new FileSnapshotStore(new SerializeSerializer());
+        return new FileSnapshotStore(
+            new SerializeSerializer(),
+            sys_get_temp_dir() . DIRECTORY_SEPARATOR
+        );
     }
 }

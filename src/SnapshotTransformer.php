@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Phauthentic\SnapshotStore;
 
 use DateTimeImmutable;
+use Phauthentic\SnapshotStore\Exception\AssertionException;
 use Phauthentic\SnapshotStore\Exception\SnapshotStoreException;
 use Phauthentic\SnapshotStore\Serializer\SerializerInterface;
 
@@ -57,7 +58,11 @@ class SnapshotTransformer implements SnapshotTransformerInterface
         /** @var array<int, string> $fields */
         $fields = array_values($this->fieldMap);
         foreach ($fields as $field) {
-            assert(isset($array[$field]), sprintf('The array is missing the key %s.', $field));
+            if (isset($array[$field])) {
+                continue;
+            }
+
+            throw AssertionException::missingArrayKey(sprintf($field));
         }
     }
 

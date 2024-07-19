@@ -34,9 +34,9 @@ class PdoSqlStoreTest extends AbstractStoreTestCase
         $host = getenv('DB_HOST') ?: '127.0.0.1';
         $dbname = getenv('DB_DATABASE') ?: 'test';
         $user = getenv('DB_USER') ?: 'root';
-        $pass = getenv('DB_PASSWORD') ?: 'changeme';
+        $password = getenv('DB_PASSWORD') ?: 'changeme';
 
-        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $pass);
+        $pdo = new PDO("mysql:host=$host;dbname=$dbname", $user, $password);
 
         // Set PDO attributes for error handling and fetch mode
         $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);

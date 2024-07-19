@@ -31,12 +31,12 @@ class RedisSnapshotStore implements SnapshotStoreInterface
     /**
      * Serializer
      *
-     * @var \Phauthentic\SnapshotStore\Serializer\SerializerInterface
+     * @var SerializerInterface
      */
     protected SerializerInterface $serializer;
 
     /**
-     * @var \Redis
+     * @var Redis
      */
 
     protected Redis $redis;
@@ -44,8 +44,8 @@ class RedisSnapshotStore implements SnapshotStoreInterface
     /**
      * Constructor
      *
-     * @param \Redis $redis
-     * @param \Phauthentic\SnapshotStore\Serializer\SerializerInterface|null $serializer Serializer
+     * @param Redis $redis
+     * @param SerializerInterface|null $serializer Serializer
      */
     public function __construct(
         Redis $redis,
@@ -80,6 +80,10 @@ class RedisSnapshotStore implements SnapshotStoreInterface
     public function get(string $aggregateId): ?SnapshotInterface
     {
         $data = $this->redis->get($this->keyPrefix . $aggregateId);
+        if ($data === false) {
+            return null;
+        }
+
         $data = $this->serializer->unserialize((string)$data);
 
         $createdAt = $data[SnapshotInterface::AGGREGATE_CREATED_AT];
@@ -103,6 +107,6 @@ class RedisSnapshotStore implements SnapshotStoreInterface
      */
     public function delete(string $aggregateId): void
     {
-        $this->redis->del($aggregateId);
+        $this->redis->del($this->keyPrefix . $aggregateId);
     }
 }

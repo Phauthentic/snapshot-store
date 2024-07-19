@@ -14,7 +14,7 @@ use Phauthentic\SnapshotStore\SnapshotInterface;
 /**
  * File System Store
  *
- * Saves your aggregate state snapshot in the file system.
+ * Saves your aggregate state snapshot in the file system. Can be used for testing and debugging.
  *
  * @SuppressWarnings(PHPMD.StaticAccess)
  */
@@ -30,7 +30,7 @@ class FileSnapshotStore implements SnapshotStoreInterface
     /**
      * Serializer
      *
-     * @var \Phauthentic\SnapshotStore\Serializer\SerializerInterface
+     * @var SerializerInterface
      */
     protected SerializerInterface $serializer;
 
@@ -42,7 +42,7 @@ class FileSnapshotStore implements SnapshotStoreInterface
     /**
      * Constructor
      *
-     * @param \Phauthentic\SnapshotStore\Serializer\SerializerInterface|null $serializer Serializer
+     * @param SerializerInterface|null $serializer Serializer
      */
     public function __construct(
         ?SerializerInterface $serializer = null,

@@ -19,7 +19,7 @@ interface SnapshotStoreInterface
      * @param SnapshotInterface $snapshot Snapshot
      * @return void
      */
-    public function store(SnapshotInterface $snapshot);
+    public function store(SnapshotInterface $snapshot): void;
 
     /**
      * Gets an aggregate snapshot if one exist

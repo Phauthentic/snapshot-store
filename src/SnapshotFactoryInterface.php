@@ -15,7 +15,7 @@ interface SnapshotFactoryInterface
      * It's up to the implementation how this is validated.
      *
      * @param array<string, mixed> $array
-     * @return \Phauthentic\SnapshotStore\SnapshotInterface
+     * @return SnapshotInterface
      */
     public function fromArray(array $array): SnapshotInterface;
 }
