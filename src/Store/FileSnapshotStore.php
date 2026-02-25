@@ -92,7 +92,7 @@ class FileSnapshotStore implements SnapshotStoreInterface
     {
         $this->assertFileExists($this->path . $file);
 
-        $content = file_get_contents($this->path . $file);
+        $content = @file_get_contents($this->path . $file);
 
         if ($content === false) {
             throw new SnapshotStoreException(sprintf(
