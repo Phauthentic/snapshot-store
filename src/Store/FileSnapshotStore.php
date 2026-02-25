@@ -46,7 +46,7 @@ class FileSnapshotStore implements SnapshotStoreInterface
      */
     public function __construct(
         ?SerializerInterface $serializer = null,
-        string $path = null
+        ?string $path = null
     ) {
         $this->serializer = $serializer ?: new SerializeSerializer();
         $this->path = $path ?? sys_get_temp_dir() . DIRECTORY_SEPARATOR;
@@ -73,7 +73,9 @@ class FileSnapshotStore implements SnapshotStoreInterface
 
     protected function assertFileExists(string $file): void
     {
-        assert(file_exists($file), sprintf('File %s does not exist', $file));
+        if (!file_exists($file)) {
+            throw new SnapshotStoreException(sprintf('File %s does not exist', $file));
+        }
     }
 
     protected function fileExists(string $file): bool

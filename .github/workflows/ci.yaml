@@ -54,7 +54,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, json, fileinfo
+        extensions: mbstring, json, fileinfo, redis
         tools: pecl
         coverage: pcov
 
@@ -68,7 +68,7 @@ jobs:
 
     - name: Run PHPUnit
       run: |
-        if [[ ${{ matrix.php-version }} == '8.2' ]]; then
+        if [[ ${{ matrix.+-version }} == '8.2' ]]; then
           bin/phpunit --coverage-clover=coverage.xml
         else
           bin/phpunit
@@ -90,7 +90,7 @@ jobs:
       uses: shivammathur/setup-php@v2
       with:
         php-version: ${{ matrix.php-version }}
-        extensions: mbstring, json, fileinfo
+        extensions: mbstring, json, fileinfo, redis
         coverage: none
         tools: pecl
 

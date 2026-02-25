@@ -37,4 +37,10 @@ final class SnapshotTest extends TestCase
         $this->expectException(AssertionException::class);
         new Snapshot('', '1234', new stdClass(), 1, new DateTimeImmutable());
     }
+
+    public function testEmptyAggregateIdThrowsException(): void
+    {
+        $this->expectException(AssertionException::class);
+        new Snapshot('TestAggregate', '', new stdClass(), 1, new DateTimeImmutable());
+    }
 }

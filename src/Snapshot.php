@@ -56,6 +56,7 @@ class Snapshot implements SnapshotInterface
         DateTimeImmutable $createdAt
     ) {
         $this->assertNotEmptyString($aggregateType);
+        $this->assertNotEmptyString($aggregateId);
 
         $this->aggregateType = $aggregateType;
         $this->aggregateId = $aggregateId;

@@ -55,19 +55,19 @@ final class SnapshotTransformerTest extends TestCase
     public function testArrayToSnapshot(): void
     {
         $aggregateRoot = new stdClass();
+        $serializedRoot = serialize($aggregateRoot);
 
         $data = [
             'aggregate_type' => 'TestAggregate',
             'aggregate_id' => '1234',
             'aggregate_version' => 1,
-            'aggregate_root' => serialize($aggregateRoot),
+            'aggregate_root' => $serializedRoot,
             'created_at' => '2024-07-18 12:34:56'
         ];
 
-        $aggregateRoot = new stdClass();
         $createdAt = DateTimeImmutable::createFromFormat('Y-m-d H:i:s', '2024-07-18 12:34:56');
 
-        $this->serializer->method('unserialize')->with('aggregate_root')->willReturn($aggregateRoot);
+        $this->serializer->method('unserialize')->with($serializedRoot)->willReturn($aggregateRoot);
 
         $snapshot = $this->transformer->arrayToSnapshot($data);
 

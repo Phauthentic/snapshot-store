@@ -19,6 +19,10 @@ class PdoSqlStoreTest extends AbstractStoreTestCase
     {
         parent::setUp();
 
+        if (!extension_loaded('pdo_mysql')) {
+            $this->markTestSkipped('PDO MySQL extension is not installed.');
+        }
+
         $pdo = $this->getPdo();
         $query = file_get_contents('./resources/snapshot_store.sql');
         if ($query === false) {

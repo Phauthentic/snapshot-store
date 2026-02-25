@@ -62,7 +62,7 @@ class SnapshotTransformer implements SnapshotTransformerInterface
                 continue;
             }
 
-            throw AssertionException::missingArrayKey(sprintf($field));
+            throw AssertionException::missingArrayKey($field);
         }
     }
 
@@ -81,10 +81,12 @@ class SnapshotTransformer implements SnapshotTransformerInterface
             throw new SnapshotStoreException('Failed to create DateTimeImmutable from the provided date.');
         }
 
+        $aggregateRootKey = $this->fieldMap[SnapshotInterface::AGGREGATE_ROOT];
+
         return new Snapshot(
             aggregateType: (string)$data[$this->fieldMap[SnapshotInterface::AGGREGATE_TYPE]],
             aggregateId: (string)$data[$this->fieldMap[SnapshotInterface::AGGREGATE_ID]],
-            aggregateRoot: $this->serializer->unserialize($this->fieldMap[SnapshotInterface::AGGREGATE_ROOT]),
+            aggregateRoot: $this->serializer->unserialize((string)$data[$aggregateRootKey]),
             lastVersion: (int)$data[$this->fieldMap[SnapshotInterface::AGGREGATE_VERSION]],
             createdAt: $createdAtDateTime
         );
